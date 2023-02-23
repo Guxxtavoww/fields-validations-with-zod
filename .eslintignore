@@ -1,0 +1,7 @@
+**/*.js
+node_modules
+build/
+dist/
+vite.config.ts
+/src/react-app-env.d.ts
+/src/reportWebVitals.ts
