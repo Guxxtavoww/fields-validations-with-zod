@@ -11,8 +11,6 @@ const LoginFormSchema = z.object({
 type Form = z.infer<typeof LoginFormSchema>;
 
 const App: React.FC = () => {
-  const [ test, setTest ] = useState('')
-
   useEffect(() => {
     validateFormFields<Form>(
       LoginFormSchema,
