@@ -18,7 +18,7 @@ const App: React.FC = () => {
         email: 'fodase',
         password: 'sads',
       },
-      errors => console.log(errors.map(error => ({ message: error.message })))
+      errors => console.log(errors.issues.map(error => ({ message: error.message })))
     );
   }, []);
 

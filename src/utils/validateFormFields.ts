@@ -29,14 +29,14 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
 export default function validateFormFields<CurrentSchema>(
   schema: z.Schema<CurrentSchema>,
   fields: CurrentSchema,
-  callBack?: (error: z.ZodError<CurrentSchema>['issues']) => void
+  callBack?: (error: z.ZodError<CurrentSchema>) => void
 ) {
   try {
     throw schema.parse(fields, { errorMap });
   } catch (err) {
     if (err instanceof z.ZodError<CurrentSchema>) {
       // console.log(err.issues);
-      if (callBack) return callBack(err.issues);
+      if (callBack) return callBack(err);
       return err;
     }
 
