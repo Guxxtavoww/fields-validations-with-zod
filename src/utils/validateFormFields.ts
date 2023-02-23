@@ -34,6 +34,6 @@ export default function validateFormFields<CurrentSchema>(
       return err;
     }
 
-    return err as z.ZodError<CurrentSchema>;
+    throw err;
   }
 }
