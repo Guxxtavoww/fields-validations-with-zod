@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { z } from 'zod';
 
 import validateFormFields from './utils/validateFormFields';
@@ -11,6 +11,8 @@ const LoginFormSchema = z.object({
 type Form = z.infer<typeof LoginFormSchema>;
 
 const App: React.FC = () => {
+  const [ test, setTest ] = useState('')
+
   useEffect(() => {
     validateFormFields<Form>(
       LoginFormSchema,
@@ -18,7 +20,8 @@ const App: React.FC = () => {
         email: 'fodase',
         password: 'sads',
       },
-      errors => console.log(errors.issues.map(error => ({ message: error.message })))
+      errors =>
+        console.log(errors.issues.map(error => ({ message: error.message })))
     );
   }, []);
 

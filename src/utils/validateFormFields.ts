@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable indent */
 import { z } from 'zod';
 
 export const errorMap: z.ZodErrorMap = (error, ctx) => {
