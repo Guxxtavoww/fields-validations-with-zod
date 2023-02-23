@@ -19,18 +19,24 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
     return { message: `Insira ${error.minimum} ou mais caracteres` };
   }
 
+  if (error.code === 'too_big') {
+    return { message: `Insira até ${error.maximum} caracteres` };
+  }
+
   return { message: ctx.defaultError };
 };
 
 export default function validateFormFields<CurrentSchema>(
   schema: z.Schema<CurrentSchema>,
-  fields: CurrentSchema
+  fields: CurrentSchema,
+  callBack?: (error: z.ZodError<CurrentSchema>['issues']) => void
 ) {
   try {
     throw schema.parse(fields, { errorMap });
   } catch (err) {
     if (err instanceof z.ZodError<CurrentSchema>) {
-      console.log(err.issues);
+      // console.log(err.issues);
+      if (callBack) return callBack(err.issues);
       return err;
     }
 

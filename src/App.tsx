@@ -12,10 +12,14 @@ type Form = z.infer<typeof LoginFormSchema>;
 
 const App: React.FC = () => {
   useEffect(() => {
-    validateFormFields<Form>(LoginFormSchema, {
-      email: 'fodase',
-      password: 'sads',
-    });
+    validateFormFields<Form>(
+      LoginFormSchema,
+      {
+        email: 'fodase',
+        password: 'sads',
+      },
+      errors => console.log(errors.map(error => ({ message: error.message })))
+    );
   }, []);
 
   return (
