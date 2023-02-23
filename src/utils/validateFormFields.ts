@@ -1,20 +1,22 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable indent */
 import { z } from 'zod';
 
 export const errorMap: z.ZodErrorMap = (error, ctx) => {
-  console.log({ errorMapError: error });
-  switch (error.code) {
-    case z.ZodIssueCode.invalid_type:
-      if (error.expected === 'string') {
-        return { message: 'Insira texto válido' };
-      }
-      break;
-    case z.ZodIssueCode.custom:
-      const params = error.params || {};
-      if (params.myField) {
-        return { message: `Bad input: ${params.myField}` };
-      }
-      break;
+  const customValidation =
+    'validation' in error ? String(error.validation) : error;
+
+  switch (customValidation) {
+    case 'email':
+      return { message: 'Email inválido' };
+    case 'url':
+      return {
+        message: 'Insira um link válido',
+      };
+  }
+
+  if (error.code === 'too_small') {
+    return { message: `Insira ${error.minimum} ou mais caracteres` };
   }
 
   return { message: ctx.defaultError };
@@ -25,16 +27,13 @@ export default function validateFormFields<CurrentSchema>(
   fields: CurrentSchema
 ) {
   try {
-    const parsedData = schema.safeParse(fields, { errorMap });
-    const errors = parsedData.success ? {} : parsedData.error.format();
-
-    console.log({ errors });
-
-    return errors;
+    throw schema.parse(fields, { errorMap });
   } catch (err) {
     if (err instanceof z.ZodError<CurrentSchema>) {
+      console.log(err.issues);
       return err;
     }
-    console.log('Erro');
+
+    return err as z.ZodError<CurrentSchema>;
   }
 }

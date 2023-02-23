@@ -5,7 +5,7 @@ import validateFormFields from './utils/validateFormFields';
 
 const LoginFormSchema = z.object({
   email: z.string().email(),
-  password: z.string(),
+  password: z.string().min(10),
 });
 
 type Form = z.infer<typeof LoginFormSchema>;
@@ -14,7 +14,7 @@ const App: React.FC = () => {
   useEffect(() => {
     validateFormFields<Form>(LoginFormSchema, {
       email: 'fodase',
-      password: 'sadasdasd',
+      password: 'sads',
     });
   }, []);
 
