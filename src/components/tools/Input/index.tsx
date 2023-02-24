@@ -25,7 +25,6 @@ const Input: React.FC<iInputProps> = ({
   const path = type === 'checkbox' || type === 'radio' ? 'checked' : 'value';
 
   useEffect(() => {
-    console.log({ inputError: error });
     registerField({
       name: fieldName,
       ref: inputRef.current,
