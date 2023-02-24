@@ -30,7 +30,7 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
       clearInputsErrors();
 
       if (schema) {
-        const parsedSucessuly = validateForfmFields<T>(schema, data, errors => {
+        const parsedSucessuly = validateFormFields<T>(schema, data, errors => {
           errors.issues.forEach(error => {
             const path = String(error.path[0]);
 
