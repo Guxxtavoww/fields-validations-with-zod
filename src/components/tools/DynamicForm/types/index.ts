@@ -2,10 +2,8 @@ import { InputHTMLAttributes, ReactNode, RefObject } from 'react';
 import { FormHandles } from '@unform/core';
 import { z } from 'zod';
 
-import { LooseAutoComplete } from '@/types';
-
 export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
-  input_name: LooseAutoComplete<keyof T>;
+  input_name: keyof T;
   placeholder?: string;
   label?: string;
 }
