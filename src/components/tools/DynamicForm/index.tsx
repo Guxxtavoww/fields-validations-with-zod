@@ -17,7 +17,7 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
 
   const clearInputsErrors = useCallback(() => {
     inputs?.forEach(input =>
-      setFieldValue(formRef, {
+      setFieldValue<T>(formRef, {
         fieldName: input.input_name,
         value: '',
         isError: true,
@@ -34,8 +34,8 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
           errors.issues.forEach(error => {
             const path = String(error.path[0]);
 
-            setFieldValue(formRef, {
-              fieldName: path,
+            setFieldValue<T>(formRef, {
+              fieldName: path as keyof T,
               value: error.message,
               isError: true,
             });
