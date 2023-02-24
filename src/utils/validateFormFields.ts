@@ -30,12 +30,13 @@ export default function validateFormFields<T>(
   callBack?: (error: z.ZodError<T>) => void
 ) {
   try {
-    throw schema.parse(fields, { errorMap });
+    schema.parse(fields, { errorMap });
   } catch (err) {
     if (err instanceof z.ZodError<T>) {
       // console.log(err.issues);
       if (callBack) return callBack(err);
       return err;
     }
+    throw err;
   }
 }
