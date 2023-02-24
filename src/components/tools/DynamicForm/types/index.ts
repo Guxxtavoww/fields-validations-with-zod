@@ -13,7 +13,7 @@ export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
 export interface iDynamicFormProps<T> {
   inputs?: iInputProps<T>[];
   schema?: z.Schema<T>;
-  onSubmit: (fields: T) => void;
+  onSubmit: (fields: T) => void | Promise<void>;
   children?: ReactNode;
   formRef?: RefObject<FormHandles>;
 }
