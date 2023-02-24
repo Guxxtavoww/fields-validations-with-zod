@@ -46,7 +46,7 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
           }
         );
 
-        return parsedSucessuly.succeded && onSubmit(data);
+        return parsedSucessuly.succeded ? onSubmit(data) : null;
       }
 
       return await onSubmit(data);
