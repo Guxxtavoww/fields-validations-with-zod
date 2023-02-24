@@ -34,7 +34,7 @@ const Input: React.FC<iInputProps> = ({
         clearError();
       },
     });
-  }, [fieldName, registerField, clearError, path, error]);
+  }, [fieldName, registerField, clearError, path]);
 
   return (
     <InputContainer>
