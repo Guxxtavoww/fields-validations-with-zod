@@ -33,7 +33,7 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
         const parsedSucessuly = validateFormFields<T>(
           schema,
           data,
-          async errors => {
+          errors => {
             errors.issues.forEach(error => {
               const path = String(error.path[0]);
 
