@@ -49,7 +49,7 @@ const Input: React.FC<iInputProps> = ({
         type={type}
         {...rest}
       />
-      {error && <span style={{ color: '#f00', fontWeight: 600 }}>{error}</span>}
+      <span style={{ color: '#f00', fontWeight: 600 }}>{error && error}</span>
     </InputContainer>
   );
 };
