@@ -37,7 +37,5 @@ export default function validateFormFields<T>(
       if (callBack) return callBack(err);
       return err;
     }
-
-    throw err;
   }
 }
