@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { z } from 'zod';
 
-import validateFormFields from './utils/validateFormFields';
+import { DynamicForm } from './components';
+import GlobalStyles from './styles/global';
 
 const LoginFormSchema = z.object({
   email: z.string().email(),
@@ -11,22 +12,20 @@ const LoginFormSchema = z.object({
 type Form = z.infer<typeof LoginFormSchema>;
 
 const App: React.FC = () => {
-  useEffect(() => {
-    validateFormFields<Form>(
-      LoginFormSchema,
-      {
-        email: 'fodase',
-        password: 'sads',
-      },
-      errors =>
-        console.log(errors.issues.map(error => ({ message: error.message })))
-    );
-  }, []);
-
   return (
-    <div className="app_wrapper">
-      <div className="test">oi</div>
-    </div>
+    <>
+      <div className="app_wrapper">
+        <DynamicForm<Form>
+          onSubmit={data => console.log({ onSumitData: data })}
+          schema={LoginFormSchema}
+          inputs={[
+            { input_name: 'email', type: 'email', label: 'E-mail' },
+            { input_name: 'password', type: 'password', label: 'Senha' },
+          ]}
+        />
+      </div>
+      <GlobalStyles />
+    </>
   );
 };
 

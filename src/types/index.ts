@@ -13,8 +13,8 @@ export type FCWithChildren<
     : ComponentProps & Partial<Children>
 >;
 
-export type LooseAutoComplete<T extends string | number> =
+export type LooseAutoComplete<T extends string | number | symbol> =
   | T
-  | Omit<string | number, T>;
+  | Omit<string | number | symbol, T>;
 
 export type Languages = LooseAutoComplete<'pt-br' | 'en' | 'es'>;

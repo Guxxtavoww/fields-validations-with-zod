@@ -24,15 +24,15 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
   return { message: ctx.defaultError };
 };
 
-export default function validateFormFields<CurrentSchema>(
-  schema: z.Schema<CurrentSchema>,
-  fields: CurrentSchema,
-  callBack?: (error: z.ZodError<CurrentSchema>) => void
+export default function validateFormFields<T>(
+  schema: z.Schema<T>,
+  fields: T,
+  callBack?: (error: z.ZodError<T>) => void
 ) {
   try {
     throw schema.parse(fields, { errorMap });
   } catch (err) {
-    if (err instanceof z.ZodError<CurrentSchema>) {
+    if (err instanceof z.ZodError<T>) {
       // console.log(err.issues);
       if (callBack) return callBack(err);
       return err;
