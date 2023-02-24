@@ -5,7 +5,7 @@ import { DynamicForm } from './components';
 
 const LoginFormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(10),
+  password: z.string().min(5),
 });
 
 type Form = z.infer<typeof LoginFormSchema>;
