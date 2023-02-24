@@ -1,7 +1,9 @@
 /* eslint-disable indent */
 import styled from 'styled-components';
 
-export const InputContainer = styled.div`
+const handleErrorColors = (hasError: boolean) => (!hasError ? '#b5b5c3' : '#f00');
+
+export const InputContainer = styled.div<{ hasError: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -15,9 +17,9 @@ export const InputContainer = styled.div`
 
     padding: 5px 10px;
     border-radius: 6px;
-    border: 1px solid #b5b5c3;
+    border: 1px solid ${props => handleErrorColors(props.hasError)};
     font-size: 13px;
-    transition: 0.2s ease;
+    transition: 0.25s ease;
     background: transparent;
     color: #555555;
 
@@ -29,7 +31,7 @@ export const InputContainer = styled.div`
     }
 
     &:focus {
-      border-color: #0d0d0d;
+      border-color: ${props => handleErrorColors(props.hasError)};
     }
 
     &:disabled {

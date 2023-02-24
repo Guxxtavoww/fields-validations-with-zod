@@ -7,6 +7,7 @@ export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder?: string;
   label?: string;
+  clearErrorOnKeyDown?: boolean;
 }
 
 const Input: React.FC<iInputProps> = ({
@@ -14,6 +15,7 @@ const Input: React.FC<iInputProps> = ({
   name,
   placeholder,
   type,
+  clearErrorOnKeyDown,
   ...rest
 }) => {
   const inputId = useId();
@@ -37,7 +39,7 @@ const Input: React.FC<iInputProps> = ({
   }, [fieldName, registerField, clearError, path]);
 
   return (
-    <InputContainer>
+    <InputContainer hasError={!!error}>
       <InputLabel htmlFor={uniqueId}>{label}</InputLabel>
       <input
         name={name}
@@ -46,9 +48,13 @@ const Input: React.FC<iInputProps> = ({
         placeholder={placeholder}
         defaultValue={defaultValue}
         type={type}
+        onKeyDown={() => clearErrorOnKeyDown && clearError()}
+        autoComplete={`current-${name}`}
         {...rest}
       />
-      <span style={{ color: '#f00', fontWeight: 600 }}>{error && error}</span>
+      <span style={{ color: '#f00', fontWeight: 600, fontSize: '12px' }}>
+        {error && error}
+      </span>
     </InputContainer>
   );
 };

@@ -6,6 +6,7 @@ export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
   input_name: keyof T;
   placeholder?: string;
   label?: string;
+  clearErrorOnKeyDown?: boolean;
 }
 
 export interface iDynamicFormProps<T> {

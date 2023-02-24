@@ -25,7 +25,7 @@ const App: React.FC = () => {
           inputs={[
             {
               input_name: 'email',
-              type: 'email',
+              type: 'text',
               label: 'E-mail',
               placeholder: 'Seu E-mail',
             },
@@ -34,6 +34,7 @@ const App: React.FC = () => {
               type: 'password',
               label: 'Senha',
               placeholder: 'Sua Senha',
+              clearErrorOnKeyDown: true,
             },
           ]}
         />
