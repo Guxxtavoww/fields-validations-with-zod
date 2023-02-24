@@ -17,8 +17,6 @@ export type Value = string | number | symbol;
 
 export type LooseAutoComplete<T extends Value> = T | Omit<Value, T>;
 
-export type Languages = LooseAutoComplete<'pt-br' | 'en' | 'es'>;
-
 export type ParseToReadonly<T extends object> = {
   readonly [K in keyof T]: T[K];
 };
