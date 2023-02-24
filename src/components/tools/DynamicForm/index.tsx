@@ -31,9 +31,7 @@ function DynamicForm<T>(props: iDynamicFormProps<T>): JSX.Element {
 
       if (schema) {
         validateFormFields<T>(schema, data, async errors => {
-          if (!errors.issues.length) {
-            return await onSubmit(data);
-          }
+          if (!errors.issues.length) return await onSubmit(data);
 
           errors.issues.forEach(error => {
             const path = String(error.path[0]);
