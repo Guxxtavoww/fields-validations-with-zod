@@ -14,7 +14,7 @@ const App: React.FC = () => {
   return (
     <div className="app_wrapper">
       <DynamicForm<Form>
-        onSubmit={data => console.log({ data })}
+        onSubmit={data => alert(JSON.stringify(data))}
         schema={LoginFormSchema}
         inputs={[
           {
