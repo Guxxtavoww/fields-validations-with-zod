@@ -24,17 +24,25 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
   return { message: ctx.defaultError };
 };
 
+export interface iFunctionResponse {
+  succeded: boolean;
+}
+
 export default function validateFormFields<T>(
   schema: z.Schema<T>,
   fields: T,
   callBack?: (error: z.ZodError<T>) => void | Promise<void>
-) {
+): iFunctionResponse {
   try {
     schema.parse(fields, { errorMap });
+    return { succeded: true };
   } catch (err) {
     if (err instanceof z.ZodError<T>) {
-      if (callBack) return callBack(err);
-      return err;
+      if (callBack) {
+        callBack(err);
+        return { succeded: false };
+      }
+      return { succeded: false };
     }
     throw new Error(JSON.stringify(err));
   }
