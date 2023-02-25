@@ -2,7 +2,7 @@ import { InputHTMLAttributes, ReactNode, RefObject } from 'react';
 import { FormHandles } from '@unform/core';
 import { z } from 'zod';
 
-import { componentMapping } from '../helpers';
+import { KeysOfComponentMapping } from '../utils/componentMapping';
 
 export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
   input_name: keyof T;
@@ -19,5 +19,3 @@ export interface iDynamicFormProps<T> {
   children?: ReactNode;
   formRef?: RefObject<FormHandles>;
 }
-
-type KeysOfComponentMapping = keyof typeof componentMapping;

@@ -1,21 +1,12 @@
-import { lazy } from 'react';
-
 import { iInputProps } from '../types';
-
-export const componentMapping = {
-  text: lazy(() => import('../../FormComponents/Input')),
-  number: lazy(() => import('../../FormComponents/Input')),
-  email: lazy(() => import('../../FormComponents/Input')),
-  password: lazy(() => import('../../FormComponents/Input')),
-  date: lazy(() => import('../../FormComponents/DateInput')),
-};
+import { componentMapping, KeysOfComponentMapping } from '../utils/componentMapping';
 
 export function handleRenderInputs<T>(
   props: iInputProps<T>,
   index: any
 ): JSX.Element {
   const Component =
-    componentMapping[(props.type as keyof typeof componentMapping) || 'text'];
+    componentMapping[(props.type as KeysOfComponentMapping) || 'text'];
 
   return <Component {...props} name={props.input_name as string} key={index} />;
 }
