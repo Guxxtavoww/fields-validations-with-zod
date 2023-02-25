@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { DynamicForm } from './components';
 
 const LoginFormSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email(), // { message: 'Email inválido' }
   password: z.string().min(5),
 });
 
