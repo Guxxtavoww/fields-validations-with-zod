@@ -59,8 +59,8 @@ const DateInput: React.FC<iInputProps> = ({
         <label htmlFor={uniqueId} className="icon">
           <Icon icon={inputDateIcon} color="#0095E8" />
         </label>
-        <span className="error">{error && error}</span>
       </div>
+      <span className="error">{error && error}</span>
     </DateInputContainer>
   );
 };

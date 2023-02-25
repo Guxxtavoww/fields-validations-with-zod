@@ -8,19 +8,21 @@ export const DateInputContainer = styled.div<{ hasError: boolean }>`
 
   .input-wrapper {
     position: relative;
-    width: 100%;
+    width: fit-content;
     height: 38px;
     display: flex;
     border-radius: 5px;
     input {
       flex: 1;
-      height: fit-content;
+      width: 100%;
+      height: 100%;
       line-height: 64px;
       border-radius: 5px;
       padding: 0 8px !important;
       font-size: 13px;
       overflow: auto;
       transition: 0.2s ease;
+      border: 1.5px solid #0d0d0d;
 
       &::placeholder {
         font-size: 13px;

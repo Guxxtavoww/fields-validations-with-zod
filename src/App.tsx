@@ -6,6 +6,7 @@ import { DynamicForm } from './components';
 const LoginFormSchema = z.object({
   email: z.string().email(), // { message: 'Email inválido' }
   password: z.string().min(5),
+  url: z.string().url(),
 });
 
 type Form = z.infer<typeof LoginFormSchema>;
@@ -30,6 +31,12 @@ const App: React.FC = () => {
             placeholder: 'Sua Senha',
             clearErrorOnKeyDown: true,
           },
+          {
+            input_name: 'url',
+            type: 'text',
+            label: 'Url',
+            placeholder: 'Url'
+          }
         ]}
       />
     </div>

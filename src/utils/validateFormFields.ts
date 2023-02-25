@@ -9,8 +9,10 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
       return { message: 'Email inválido' };
     case 'url':
       return {
-        message: 'Insira um link válido',
+        message: 'Insira um link (url) válido(a)',
       };
+    case 'datetime':
+      return { message: 'Data inválida' };
   }
 
   if (error.code === 'too_small') {
