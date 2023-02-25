@@ -9,7 +9,7 @@ export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   label?: string;
   clearErrorOnKeyDown?: boolean;
-  type: KeysOfComponentMapping;
+  type?: KeysOfComponentMapping;
 }
 
 export interface iDynamicFormProps<T> {

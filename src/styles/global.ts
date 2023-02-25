@@ -29,10 +29,12 @@ const GlobalStyles = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
   input:disabled {
     opacity: 0.4 !important;
     cursor: not-allowed !important;
   }
+
   .error {
     color: #e12325; 
     font-weight: 600;
