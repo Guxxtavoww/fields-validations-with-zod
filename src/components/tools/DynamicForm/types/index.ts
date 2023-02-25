@@ -12,8 +12,10 @@ export interface iInputProps<T> extends InputHTMLAttributes<HTMLInputElement> {
   type?: KeysOfComponentMapping;
 }
 
+export type InputProps<T> = Omit<iInputProps<T>, 'name' | 'id'>;
+
 export interface iDynamicFormProps<T> {
-  inputs?: iInputProps<T>[];
+  inputs?: InputProps<T>[];
   schema?: z.Schema<T>;
   onSubmit: (fields: T) => void | Promise<void>;
   children?: ReactNode;
