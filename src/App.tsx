@@ -36,7 +36,7 @@ const App: React.FC = () => {
             type: 'text',
             label: 'Url',
             placeholder: 'Url'
-          }
+          },
         ]}
       />
     </div>
