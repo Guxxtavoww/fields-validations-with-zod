@@ -1,8 +1,10 @@
 import { InputHTMLAttributes } from 'react';
 
+import { KeysOfComponentMapping } from '../../DynamicForm/utils/componentMapping';
+
 export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
   placeholder?: string;
   label?: string;
   clearErrorOnKeyDown?: boolean;
+  type?: KeysOfComponentMapping;
 }
