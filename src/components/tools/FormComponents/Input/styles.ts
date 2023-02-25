@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const handleErrorColors = (hasError: boolean) =>
-  !hasError ? '#b5b5c3' : '#f00';
+  !hasError ? '#b5b5c3' : '#e12325';
 
 export const InputContainer = styled.div<{ hasError: boolean }>`
   display: flex;
@@ -10,10 +10,6 @@ export const InputContainer = styled.div<{ hasError: boolean }>`
   justify-content: center;
   gap: 4px;
   min-height: 80px;
-
-  label {
-    color: ${props => (!props.hasError ? '#0d0d0d' : '#f00')};
-  }
 
   input {
     flex: 1;
@@ -38,21 +34,10 @@ export const InputContainer = styled.div<{ hasError: boolean }>`
       border-color: ${props => handleErrorColors(props.hasError)};
     }
 
-    &:disabled {
-      opacity: 0.4 !important;
-      cursor: not-allowed !important;
-    }
-
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
   }
-`;
-
-export const InputLabel = styled.label`
-  font-size: 12px;
-  font-weight: 400;
-  text-transform: capitalize;
 `;

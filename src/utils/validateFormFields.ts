@@ -15,9 +15,7 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
 
   if (error.code === 'too_small') {
     return { message: `Insira ${error.minimum} ou mais caracteres` };
-  }
-
-  if (error.code === 'too_big') {
+  } else if (error.code === 'too_big') {
     return { message: `Insira até ${error.maximum} caracteres` };
   }
 

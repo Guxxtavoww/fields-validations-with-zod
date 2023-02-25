@@ -1,14 +1,9 @@
-import React, { useId, useRef, useEffect, InputHTMLAttributes } from 'react';
+import React, { useId, useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 
-import { InputContainer, InputLabel } from './styles';
-
-export interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name: string;
-  placeholder?: string;
-  label?: string;
-  clearErrorOnKeyDown?: boolean;
-}
+import { InputLabel } from '../styles';
+import { iInputProps } from '../types';
+import { InputContainer } from './styles';
 
 const Input: React.FC<iInputProps> = ({
   label,
@@ -40,7 +35,9 @@ const Input: React.FC<iInputProps> = ({
 
   return (
     <InputContainer hasError={!!error}>
-      <InputLabel htmlFor={uniqueId}>{label}</InputLabel>
+      <InputLabel htmlFor={uniqueId} hasError={!!error}>
+        {label}
+      </InputLabel>
       <input
         name={name}
         id={uniqueId}
@@ -52,9 +49,7 @@ const Input: React.FC<iInputProps> = ({
         autoComplete={`current-${name}`}
         {...rest}
       />
-      <span style={{ color: '#f00', fontWeight: 600, fontSize: '12px' }}>
-        {error && error}
-      </span>
+      <span className="error">{error && error}</span>
     </InputContainer>
   );
 };

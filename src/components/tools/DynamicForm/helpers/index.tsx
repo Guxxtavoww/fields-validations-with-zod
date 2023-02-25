@@ -7,14 +7,15 @@ export function handleRenderInputs<T>(
   index: any
 ): JSX.Element {
   const componentMapping = {
-    text: lazy(() => import('../../Input')),
-    number: lazy(() => import('../../Input')),
-    email: lazy(() => import('../../Input')),
-    password: lazy(() => import('../../Input')),
+    text: lazy(() => import('../../FormComponents/Input')),
+    number: lazy(() => import('../../FormComponents/Input')),
+    email: lazy(() => import('../../FormComponents/Input')),
+    password: lazy(() => import('../../FormComponents/Input')),
+    date: lazy(() => import('../../FormComponents/DateInput')),
   };
 
   const Component =
-    componentMapping[props.type as keyof typeof componentMapping];
+    componentMapping[(props.type as keyof typeof componentMapping) || 'text'];
 
   return <Component {...props} name={props.input_name as string} key={index} />;
 }
