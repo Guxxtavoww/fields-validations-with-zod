@@ -1,8 +1,8 @@
-import { iInputProps } from '../types';
+import { InputProps } from '../types';
 import { componentMapping } from '../utils/componentMapping';
 
 export function handleRenderInputs<T>(
-  props: iInputProps<T>,
+  props: InputProps<T>,
   index: any
 ): JSX.Element {
   const Component = componentMapping[props.type || 'text'];
