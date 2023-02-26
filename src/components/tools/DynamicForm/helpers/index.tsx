@@ -7,5 +7,5 @@ export function handleRenderInputs<T>(
 ): JSX.Element {
   const Component = componentMapping[props.type || 'text'];
 
-  return <Component {...props} name={props.input_name as string} key={index} />;
+  return <Component name={props.input_name as string} key={index} {...props} />;
 }
