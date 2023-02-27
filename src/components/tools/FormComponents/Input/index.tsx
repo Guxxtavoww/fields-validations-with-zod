@@ -16,7 +16,7 @@ const Input: React.FC<iInputProps> = ({
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, clearError, defaultValue, error } =
-    useField(name);
+    useField(String(name));
 
   const uniqueId = `${name}${inputId}`;
   const path = type === 'checkbox' || type === 'radio' ? 'checked' : 'value';
