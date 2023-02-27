@@ -19,7 +19,7 @@ const DateInput: React.FC<iInputProps> = ({
   const inputId = useId();
   const dateInputRef = useRef<HTMLInputElement>(null);
   const { clearError, defaultValue, error, fieldName, registerField } =
-    useField(name);
+    useField(String(name));
 
   const uniqueId = `${name}${inputId}`;
 
