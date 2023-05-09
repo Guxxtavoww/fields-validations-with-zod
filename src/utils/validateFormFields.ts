@@ -24,25 +24,24 @@ export const errorMap: z.ZodErrorMap = (error, ctx) => {
   return { message: ctx.defaultError };
 };
 
-export interface iFunctionResponse {
-  succeded: boolean;
-}
+type Unsuccessful = { succeded: false; formatedData: null };
+type Succeded<T> = { succeded: true; formatedData: T };
+
+type ValidationResponse<T> = Succeded<T> | Unsuccessful;
 
 export default function validateFormFields<T>(
   schema: z.Schema<T>,
   fields: T,
-  callBack?: (error: z.ZodError<T>) => void | Promise<void>
-): iFunctionResponse {
+  callBack?: (error: z.ZodError<T>) => void | Promise<void>,
+): ValidationResponse<T> {
   try {
-    schema.parse(fields, { errorMap });
-    return { succeded: true };
+    const parsedData = schema.parse(fields, { errorMap });
+    return { succeded: true, formatedData: parsedData };
   } catch (err) {
-    if (err instanceof z.ZodError<T>) {
-      if (callBack) {
-        callBack(err);
-        return { succeded: false };
-      }
-      return { succeded: false };
+    if (err instanceof z.ZodError) {
+      if (callBack) callBack(err);
+
+      return { succeded: false, formatedData: null };
     }
     throw new Error(JSON.stringify(err));
   }
